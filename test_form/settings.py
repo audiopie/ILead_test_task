@@ -27,9 +27,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'users.apps.UsersConfig',
+
+    #3rd party
+    'social_django',  # social authentication
 ]
 
 MIDDLEWARE = [
+    'social_django.middleware.SocialAuthExceptionMiddleware', # social middleware
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,6 +56,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -65,11 +72,11 @@ WSGI_APPLICATION = 'test_form.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
         'USER': 'postgres',
         'HOST': 'db',
-        'PORT': 5432
+        'PORT': 5432,
     }
 }
 
@@ -121,4 +128,33 @@ STATICFILES_DIRS = [
 ]
 
 
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'home'
+
+
+# Custom user model
+
 AUTH_USER_MODEL = 'users.CustomUser'
+
+# Social Backend
+
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+
+# Google
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '360851993530-svel10pa805rlmcksgtg7qtm8pbtgl5d.apps.googleusercontent.com'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_CLIENT_SECRET = 'PO0OHwOM239QsuW8oIDXTeUm'
+
+# Facebook
+
+SOCIAL_AUTH_FACEBOOK_APP_ID = '314088309512395'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'e380a99612c16c3377a14f9cd70fff4e'
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2', # backend for facebook
+    'social_core.backends.google.GoogleOpenId', # for google
+    'social_core.backends.google.GoogleOAuth2', # for google
+    'social_core.backends.google.GoogleOAuth',  # for google
+    'django.contrib.auth.backends.ModelBackend', # for django backend
+)

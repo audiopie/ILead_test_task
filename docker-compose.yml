@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     db:
-        image: postgres:10
+        image: postgres:11.2 
     web:
         build: .
         command: python /ILead/manage.py runserver 0.0.0.0:8000

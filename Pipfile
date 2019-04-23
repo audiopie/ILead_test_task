@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 django = "==2.1.7"
 psycopg2-binary = "==2.7.6.1"
+pillow = "*"
+social-auth-app-django = "*"
 
 [requires]
 python_version = "3.7"
