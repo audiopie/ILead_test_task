@@ -14,12 +14,15 @@
         </div>
     </div>
     <h3>or</h3>
+
+{% include 'form_errors.html' %}
+
     <div class="form-content clearfix">
         <form method="POST">
              {% csrf_token %}
             <div class="first-name">
                 <img src="{% static 'img/name.png' %}" alt="name">
-                {{ form.username }}
+                {{ form.first_name }}
             </div>
             <div class="last-name">
                 <img src="{% static 'img/name.png' %}" alt="name">
@@ -31,14 +34,14 @@
             </div>
             <div class="password">
                 <img src="{% static 'img/password.png' %}" alt="password">
-                {{ form.password }}
+                {{ form.password1 }}
             </div>
             <div class="password1">
                 <img src="{% static 'img/password.png' %}" alt="password">
                 {{ form.password2 }}
             </div>
             <div class="check">
-                <input class="checkbox" type="checkbox" name="checkbox">
+                {{ form.newsletter }}
                 <span>I'd like to receive PlacePass news and offers</span>
             </div>
             <div class="text">
@@ -50,6 +53,7 @@
             </div>
 
         </form>
+
         <div class="conent1 clearfix">
             <div class="text1">
                 <p>Already have an account?</p>
@@ -57,8 +61,8 @@
             <div>
                 <button type="button" class="btn btn-success">Log In</button>
             </div>
-
         </div>
+
 
     </div>
 </div>

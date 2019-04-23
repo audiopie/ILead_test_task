@@ -1,26 +1,20 @@
 from django import forms
-from django.forms import ModelForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from .models import CustomUser
 
-class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder': 'Password'}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder': 'Confirm Password'}))
+
+
+class UserRegistrationForm(UserCreationForm):
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'First name'}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Last name'}),required=True)
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email'}),required=True)
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}),required=True)
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm password'}))
+    newsletter = forms.BooleanField(required=False,widget=forms.CheckboxInput(attrs={'checked':''}))
+
+
 
     class Meta:
         model = CustomUser
-        fields = ('username', 'last_name', 'email',)
-        widgets = {
-            'username': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'First Name'}),
-            'last_name': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Last Name'}),
-            'email': forms.TextInput(attrs={'class':'form-control','type' : 'email', 'placeholder': 'Email'})
-        }
-
-    def clean_password(self, *args, **kwargs):
-        password1 = self.cleaned_data.get('password')
-        password2 = self.cleaned_data.get('password2')
-        if password1 and password2 and password1 != password2:
-            raise forms.ValidationError(
-                self.error_messages["Password don't match"],
-            )
-        return password2
-            
+        fields = ('first_name', 'last_name', 'email', 'password1','password2', 'newsletter')
