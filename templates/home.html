@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+  <div class="row justify-content-md-center">
+        <h1>Welcome to the homepage!</h1>
+    </div>
+    <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+
+
+                <a class="btn btn-warning" href="{% url 'users:logout' %}">logout</a>
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock content %}

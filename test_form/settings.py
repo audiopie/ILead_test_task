@@ -30,6 +30,7 @@ INSTALLED_APPS = [
 
     #3rd party
     'social_django',  # social authentication
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -158,3 +159,8 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth',  # for google
     'django.contrib.auth.backends.ModelBackend', # for django backend
 )
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_URL = 'login'
