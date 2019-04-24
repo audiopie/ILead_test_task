@@ -6,6 +6,11 @@ from .models import CustomUser
 
 User = get_user_model()
 
+class LoginForm(forms.Form):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email'}),required=True)
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}), required=True)
+
+
 class UserRegistrationForm(UserCreationForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'First name'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Last name'}),required=True)
@@ -19,10 +24,3 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ('first_name', 'last_name', 'email', 'password1','password2', 'newsletter')
-
-    def clean_email(self):
-        email = self.cleaned_data['email']
-        qs = User.objects.filter(email=email)
-        if qs.exist():
-            raise ValidationError('This email already taken')
-        return email

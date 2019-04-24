@@ -1,4 +1,5 @@
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -138,18 +139,19 @@ LOGIN_REDIRECT_URL = 'home'
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
+
 # Social Backend
 
 SOCIAL_AUTH_POSTGRES_JSONFIELD = True
 
 # Google
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '360851993530-svel10pa805rlmcksgtg7qtm8pbtgl5d.apps.googleusercontent.com'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_CLIENT_SECRET = ''
 
 # Facebook
 
-SOCIAL_AUTH_FACEBOOK_APP_ID = ''
+SOCIAL_AUTH_FACEBOOK_APP_ID = '314088309512395'
 SOCIAL_AUTH_FACEBOOK_SECRET = ''
 
 AUTHENTICATION_BACKENDS = (
@@ -162,5 +164,5 @@ AUTHENTICATION_BACKENDS = (
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'users:home'
 LOGOUT_URL = 'login'

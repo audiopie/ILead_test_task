@@ -1,73 +1,74 @@
 {% load static %}
 
 <div class="fon">
-<div class="content">
-    <h2>sign up with</h2>
-    <div class="social-content clearfix">
-    <div class="facebook">
-        <img  src="{% static 'img/icons8-facebook-f-48.png' %}" alt="facebook">
-        <span class="margin"><a href="{% url 'social:begin' 'facebook' %}"> Facebook</a></span> <span class="r">/</span>
-    </div>
-        <div class="google">
-            <img src="{% static 'img/google.png' %}" alt="google">
-            <span><a href="{% url 'social:begin' 'google-oauth2' %}">Google</a> </span>
+    <div class="content">
+        <h2>sign up with</h2>
+        <div class="social-content clearfix">
+            <div class="facebook">
+                <img  src="{% static 'img/icons8-facebook-f-48.png' %}" alt="facebook">
+                <span class="margin"><a href="{% url 'social:begin' 'facebook' %}"> Facebook</a></span> <span class="r">/</span>
+            </div>
+            <div class="google">
+                <img src="{% static 'img/google.png' %}" alt="google">
+                <span><a href="{% url 'social:begin' 'google-oauth2' %}">Google</a> </span>
+            </div>
         </div>
-    </div>
-    <h3>or</h3>
+        <h3>or</h3>
 
-{% include 'form_errors.html' %}
+        {% include 'form_errors.html' %}
 
-    <div class="form-content clearfix">
-        <form method="POST">
-             {% csrf_token %}
-            <div class="first-name">
-                <img src="{% static 'img/name.png' %}" alt="name">
-                {{ form.first_name }}
-            </div>
-            <div class="last-name">
-                <img src="{% static 'img/name.png' %}" alt="name">
-                {{ form.last_name }}
-            </div>
-            <div class="email">
-                <img src="{% static 'img/email.png' %}" alt="email">
-                {{ form.email }}
-            </div>
-            <div class="password">
-                <img src="{% static 'img/password.png' %}" alt="password">
-                {{ form.password1 }}
-            </div>
-            <div class="password1">
-                <img src="{% static 'img/password.png' %}" alt="password">
-                {{ form.password2 }}
-            </div>
-            <div class="check">
-                {{ form.newsletter }}
-                <span>I'd like to receive PlacePass news and offers</span>
-            </div>
-            <div class="text">
-                <p>By signing up I agree to the PlacePass <span><a href="#">Terms of Service</a>  </span>and <span> <a href="#"> Privacy Policy</a></span></p>
+        <div class="form-content clearfix">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="first-name">
+                    <img src="{% static 'img/name.png' %}" alt="name">
+                    {{ form.first_name }}
+                </div>
+                <div class="last-name">
+                    <img src="{% static 'img/name.png' %}" alt="name">
+                    {{ form.last_name }}
+                </div>
+                <div class="email">
+                    <img src="{% static 'img/email.png' %}" alt="email">
+                    {{ form.email }}
+                </div>
+                <div class="password">
+                    <img src="{% static 'img/password.png' %}" alt="password">
+                    {{ form.password1 }}
+                </div>
+                <div class="password1">
+                    <img src="{% static 'img/password.png' %}" alt="password">
+                    {{ form.password2 }}
+                </div>
+                <div class="check">
+                    {{ form.newsletter }}
+                    <span>I'd like to receive PlacePass news and offers</span>
+                </div>
+                <div class="text">
+                    <p>By signing up I agree to the PlacePass <span><a href="{% url 'users:term' %}">Terms of Service</a>  </span>and <span> <a href="{% url 'users:policy' %}"> Privacy Policy</a></span></p>
 
-            </div>
-            <div>
-                <input type="submit" value="Register" class="btn btn-success">
-            </div>
+                </div>
 
-        </form>
+                <div class="row justify-content-md-center mb-2">
+                    <input type="submit" value="Register" class="btn btn-success btn-lg btn-block">
+                </div>
 
 
+            </form>
 
-        <div class="conent1 clearfix">
-            <div class="text1">
+
+
+            <div class="row justify-content-md-center">
                 <p>Already have an account?</p>
             </div>
-            <div>
-            <a class="btn btn-success" href="{% url 'users:login' %}">Log In</a
+            <form  method="post">
+                {% csrf_token %}
+                <div class="row justify-content-md-center">
+                    <a class="btn btn-info btn-lg btn-block" href="{% url 'users:login' %}">Log In</a
+                    </form>
+                </div>
 
             </div>
         </div>
-
-
     </div>
-</div>
-</div>
 </div>

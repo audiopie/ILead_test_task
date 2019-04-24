@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.core.mail import send_mail
@@ -33,7 +33,7 @@ class CustomUserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
-class CustomUser(AbstractBaseUser):
+class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
     class Meta:
@@ -51,7 +51,7 @@ class CustomUser(AbstractBaseUser):
         verbose_name=_("email"), unique=True,
         max_length=250,
         error_messages={
-            'unique': _("A user with that username already exists."),
+            'unique': _("A user with that email already exists."),
         },
     )
 
