@@ -1,6 +1,5 @@
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth import login
 from .views import register_view, home_view, term_of_service, policy
 
 app_name='users'

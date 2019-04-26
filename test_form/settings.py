@@ -35,7 +35,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'social_django.middleware.SocialAuthExceptionMiddleware', # social middleware
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -43,6 +42,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware', # social middleware
 ]
 
 ROOT_URLCONF = 'test_form.urls'
@@ -130,9 +130,8 @@ STATICFILES_DIRS = [
 ]
 
 
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'users:home'
+LOGOUT_URL = 'users:login'
 
 
 # Custom user model
@@ -143,11 +142,13 @@ AUTH_USER_MODEL = 'users.CustomUser'
 # Social Backend
 
 SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/'
 
 # Google
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '360851993530-svel10pa805rlmcksgtg7qtm8pbtgl5d.apps.googleusercontent.com'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_CLIENT_SECRET = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
 
 # Facebook
 
@@ -162,7 +163,25 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend', # for django backend
 )
 
+# Crispy forms
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'users:home'
-LOGOUT_URL = 'login'
+
+# EMAIL SETTINGS
+
+# EMAIL_HOST = 'smtp.email-domain.com'
+# EMAIL_HOST_USER = 'yourusername@youremail.com'
+# EMAIL_HOST_PASSWORD = 'your_password'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "test_form@list.ru"
+EMAIL_HOST_PASSWORD = "Audio2202"
+EMAIL_USE_SSL = True
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

@@ -1,43 +1,43 @@
-    {% extends 'base.html' %}
-    {% load static %}
+{% extends 'base.html' %}
+{% load static %}
 
-    {% load crispy_forms_tags %}
+{% load crispy_forms_tags %}
 
-    {% block content %}
+{% block content %}
 
 
 
-    <div class="content">
+<div class="content">
 
-        <h2>Log In with</h2>
-        <div class="social-content clearfix">
+    <h2>Log In with</h2>
+    <div class="social-content clearfix">
         <div class="facebook">
             <img  src="{% static 'img/icons8-facebook-f-48.png' %}" alt="facebook">
             <span class="margin"><a href="{% url 'social:begin' 'facebook' %}"> Facebook</a></span> <span class="r">/</span>
         </div>
-            <div class="google">
-                <img src="{% static 'img/google.png' %}" alt="google">
-                <span><a href="{% url 'social:begin' 'google-oauth2' %}">Google</a> </span>
-            </div>
+        <div class="google">
+            <img src="{% static 'img/google.png' %}" alt="google">
+            <span><a href="{% url 'social:begin' 'google-oauth2' %}">Google</a> </span>
         </div>
-        <h3>or</h3>
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                <li {% if message.tags %} class="{{ message.tags}}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-            </ul>
-            {% endif %}
-
-            <form method="POST">
-                 {% csrf_token %}
-                 {{ form|crispy }}
-
-                <div class="row justify-content-md-center mb-2">
-                 <input type="submit" value="Log In" class="btn btn-success">
-                 </div>
-            </form>
     </div>
+    <h3>or</h3>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags}}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <div class="row justify-content-md-center mb-2">
+            <input type="submit" value="Log In" class="btn btn-success">
+        </div>
+    </form>
+</div>
 
 
-    {% endblock %}
+{% endblock %}
