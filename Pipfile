@@ -11,7 +11,8 @@ psycopg2-binary = "==2.7.6.1"
 pillow = "*"
 social-auth-app-django = "*"
 django-crispy-forms = "*"
-python-decouple = "==3.1"
+
+
 
 [requires]
 python_version = "3.7"

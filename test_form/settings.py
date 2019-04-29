@@ -59,8 +59,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
+                'social_django.context_processors.backends',  # django-social
+                'social_django.context_processors.login_redirect',  # django-social
             ],
         },
     },
@@ -135,25 +135,29 @@ LOGOUT_URL = 'users:login'
 
 
 # Custom user model
-
 AUTH_USER_MODEL = 'users.CustomUser'
 
 
 # Social Backend
-
 SOCIAL_AUTH_POSTGRES_JSONFIELD = True
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/'
 
 # Google
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '360851993530-svel10pa805rlmcksgtg7qtm8pbtgl5d.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '360851993530-k493nkavt73ficgblr32h4l25uedjro1.apps.googleusercontent.com'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
 
-# Facebook
 
-SOCIAL_AUTH_FACEBOOK_APP_ID = '314088309512395'
+# Facebook
+SOCIAL_AUTH_FACEBOOK_KEY = '1044163192449889'
 SOCIAL_AUTH_FACEBOOK_SECRET = ''
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+  'locale': 'ru_RU',
+  'fields': 'id, name, email, age_range'
+}
+
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.facebook.FacebookOAuth2', # backend for facebook
@@ -164,7 +168,6 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # Crispy forms
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
